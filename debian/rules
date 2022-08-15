@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+# debian/rules for the Debian xutils package.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --with autoreconf,quilt
+
+override_dh_auto_configure:
+	dh_auto_configure -- --with-xinitdir=/etc/X11/xinit \
+		             --with-xterm=/usr/bin/xterm
+
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp
+
+override_dh_install:
+	dh_install --list-missing
+
+override_dh_fixperms:
+	dh_fixperms
+	chmod 0755 debian/xinit/etc/X11/xinit/xinitrc
+	chmod 0755 debian/xinit/etc/X11/xinit/xserverrc

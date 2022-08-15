@@ -1,0 +1,31 @@
+Source: xinit
+Section: x11
+Priority: optional
+Maintainer: Deepin Developer <deepin-dev@deepin.org>
+Build-Depends:
+ debhelper (>= 9),
+ dh-autoreconf,
+ pkg-config,
+ libx11-dev (>= 2:1.0.0),
+ quilt,
+ automake,
+ x11proto-core-dev (>= 7.0.17),
+ xutils-dev (>= 1:7.7+3),
+Standards-Version: 3.9.6
+#Vcs-Git
+#Vcs-Browser
+
+Package: xinit
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ coreutils (>= 7.4-1),
+ x11-common,
+ xauth,
+Recommends:
+ xserver-xorg | xserver,
+ xterm | x-session-manager | x-window-manager | x-terminal-emulator,
+Description: X server initialisation tool
+ xinit and startx are programs which facilitate starting an X server, and
+ loading a base X session.
